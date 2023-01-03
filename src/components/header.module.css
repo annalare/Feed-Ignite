@@ -1,4 +1,6 @@
 .header {
-  background: #c5b8b8;
-  height: 80px;
+  background: var(--gray-800);
+  display: flex;
+  justify-content: center;
+  padding: 1.25rem 0;
 }
