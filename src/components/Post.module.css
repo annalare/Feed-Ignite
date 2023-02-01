@@ -100,3 +100,6 @@
 .commentForm button[type="submit"]:hover {
   background: #33a180;
 }
+.commentList {
+  margin-top: 2rem;
+}

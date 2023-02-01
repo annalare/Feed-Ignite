@@ -17,10 +17,6 @@ export function App() {
               author="Guilherme Melo"
               content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's sul"
             />
-            <Post
-              author="Guilherme Melo"
-              content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's sul"
-            />
           </main>
         </div>
       </div>
