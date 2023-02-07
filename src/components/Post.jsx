@@ -1,30 +1,58 @@
 import { Avatar } from "./Avatar";
 import Comment from "./Comment";
 import styles from "./Post.module.css";
+import { format, formatDistanceToNow } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 
-export function Post() {
+export function Post({ author, publishedAt, content }) {
+  const publishedDateFormatted = format(
+    publishedAt,
+    "d 'de' LLLL 'ás' HH:mm'h'",
+    { locale: ptBR }
+  );
+  const publishedDateRetaliveToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true,
+  });
+
+  // const publishedDateFormatted = new Intl.DateTimeFormat("pt-BR", {
+  //   day: "2-digit",
+  //   month: "long",
+  //   hour: "2-digit",
+  //   minute: "2-digit",
+  // }).format(publishedAt);
+
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src="https://github.com/annalare.png" />
+          <Avatar src={author.avatarUrl} />
           <div className={styles.authorInfo}>
-            <strong>Larissa Mendes</strong>
-            <span>Front End</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
 
-        <time dateTime="2022-29-01 22:22:22"> Publicado há 1 hora </time>
+        <time
+          title="{publishedDateFormatted}"
+          dateTime={publishedAt.toISOString()}
+        >
+          {publishedDateRetaliveToNow}{" "}
+        </time>
       </header>
       <div className={styles.content}>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          Exercitationem
-        </p>
-        <p> nam aperiam, odit sapiente voluptatibus ipsam?</p>
-        <p>
-          <a href="https://github.com/annalare"> github </a>
-        </p>
+        {content.map((line) => {
+          if (line.type == "paragraph") {
+            return <p>{line.content}</p>;
+          } else if (line.type == "link") {
+            return (
+              <p>
+                {" "}
+                <a href="#"> {line.content}</a>
+              </p>
+            );
+          }
+        })}
       </div>
       <form className={styles.commentForm}>
         <strong> Deixe seu feedback</strong>
