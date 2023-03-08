@@ -100,6 +100,10 @@
 .commentForm button[type="submit"]:hover {
   background: #33a180;
 }
+.commentForm button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
 .commentList {
   margin-top: 2rem;
 }
